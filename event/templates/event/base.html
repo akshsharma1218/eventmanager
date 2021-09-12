@@ -1,0 +1,81 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>Welcome to Event App</title>
+    <!-- Font -->
+    <link href='https://fonts.googleapis.com/css?family=Averia Gruesa Libre' rel='stylesheet'>
+    <!-- FontAwesomIcon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Static css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"></link>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- FontAwesomIcon kit -->
+    <script src="https://kit.fontawesome.com/06fc6fcfc0.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home' %}">eventbrite</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="nav-search form-inline my-2 my-lg-0" action="{% url 'search-result' %}" method="get">
+      <i class="ak-search fa fa-search"></i>
+      <input name="q" class="form-control mr-sm-2" type="text" placeholder="     Search">
+      <button class="btn" type="submit">Browse event</button>
+    </form>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link text-small" href="{% url 'event_create' %}">Host an event</a>
+      </li>
+      <li class="nav-item">
+        {% if user.is_authenticated %}
+          <a class="nav-link text-small" href="{% url 'liked_event' %}">{{user.email}}</a>
+        {% else %}
+          <a class="nav-link text-small" href="{% url 'register' %}">Register</a>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+</nav>
+<section class="vh-100">
+{% block content %} {% endblock %}
+</section>
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(event){
+    $(document).on('click', '#like', function(event){
+      event.preventDefault();
+      var pk = $(this).attr('value');
+      $.ajax({
+        type :'POST',
+        url :'{% url "like_event" %}',
+        data : { 'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+        dataType :'json',
+        success : function(response){
+          $('#'+pk).html(response['form'])
+          console.log($('#like-section').html(response['form']));
+        },
+        error : function(rs, e){
+          console.log(rs.responseText);
+        },
+      });
+    });
+  });
+</script>
+</body>
+</html>

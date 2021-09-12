@@ -1,0 +1,18 @@
+{% extends "event/base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <div class="container-sm ak-border">
+      <h2>Log In</h2>
+      <hr>
+      <form method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button class="btn-submit" type="submit">LogIn</button>
+      </form>
+      <div >
+        <small class="text-muted">
+            Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+        </small>
+      </div>
+    </div>
+{% endblock %}

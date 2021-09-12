@@ -1,0 +1,111 @@
+body{
+  margin:auto;
+  padding: 20px;
+  font-family: 'Averia Gruesa Libre';
+}
+h2, .navbar-brand{
+  color:red !important;
+  font-weight: bolder;
+}
+h1, .name{
+  color:black;
+  font-weight: bold;
+}
+input:focus{
+  z-index:100;
+}
+nav{
+  margin-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+.fa-upload{
+  float:right;
+}
+.ak-img{
+  display: block;
+  margin: auto;
+  width: 200px;
+  height: 175px;
+}
+.text-small{
+  font-size: 14px;
+  font-weight: lighter;
+}
+.ak-search{
+    position: relative;
+    color: #a2a39c;
+    left: 22px;
+    font-weight: lighter;
+}
+@media (max-width:575px){
+  .nav-search>button{
+    margin-top: 10px;
+  }
+  .ak-search{
+    display: none;
+  }
+}
+@media (min-width:790px) and (max-width:1444px) {
+    section{
+      margin:auto 15%;
+      font-size: 18px;
+    }
+    nav{
+      margin-bottom: 50px;
+    }
+    .nav-search{
+      width:80%;
+    }
+    .nav-search>input{
+      width:75% !important;
+    }
+    .icon, .b-icon{
+      float: right;
+      margin-left:30px;
+    }
+}
+@media (min-width:1444px) {
+    section{
+      margin:auto 25%;
+      font-size: 20px;
+    }
+    nav{
+      margin-bottom: 80px;
+    }
+    .nav-search{
+      width:80%;
+    }
+    .nav-search>input{
+      width:85% !important;
+    }
+    .icon, .b-icon{
+      float: right;
+      margin-left:30px;
+    }
+}
+.ak-border{
+  border:1px solid black;
+  box-shadow: 5px 3px 10px grey;
+  border-radius: 5px;
+  padding: 20px;
+}
+.btn-submit{
+    margin: 10px;
+    background: #f5351b;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    padding: 6px 10px;
+}
+.b-icon{
+  background: white;
+  border:white;
+  position: relative;
+  top: -4px;
+}
+.icon-s{
+  color:#ff5900;
+}
+.btn-submit a{
+  color: white !important;
+}

@@ -1,0 +1,23 @@
+{% extends "event/base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <div class="container">
+      <h1>Events</h1>
+      <div class="row mt-5">
+        {% for event in object_list %}
+        <div class=" my-3 col-lg-4 col-md-6 col-sm-12">
+          <img class=" ak-img mx-auto" src="{{event.image.url}}"></img>
+        </div>
+        <div class="my-3 col-lg-8 col-md-6 col-sm-12">
+          <p class="name">{{event.event_name}}</p>
+          <p class="text-muted">{{event.time}}</p>
+          <p class="text-muted">{{event.location}}</p>
+          <div id="{{event.id}}">
+              {%include 'event/like_section.html'%}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+{% endblock %}

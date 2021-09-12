@@ -1,0 +1,9 @@
+<form method="post">
+  {%csrf_token%}
+{% if event.is_liked %}
+    <button class="b-icon" type="submit" id="like" value="{{event.id}}" name="event_id"><i class=" icon-s fas fa-heart"> </i></button>
+{% else %}
+    <button class="b-icon" type="submit" id="like" value="{{event.id}}" name="event_id"><i class="far fa-heart"> </i></button>
+{% endif %}
+</form>
+<i class="icon fas fa-upload"></i>

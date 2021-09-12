@@ -1,0 +1,13 @@
+{% extends "event/base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <div class="container-sm ak-border">
+      <h2>Event Details</h2>
+      <hr>
+      <form enctype='multipart/form-data' method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button class="btn-submit" type="submit">Submit</button>
+      </form>
+    </div>
+{% endblock %}
